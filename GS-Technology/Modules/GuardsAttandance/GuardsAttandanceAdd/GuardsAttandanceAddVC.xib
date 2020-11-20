@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuardsAttandanceAddVC" customModule="GS_Technology" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="UOQ-7k-uMG" id="SNs-8P-nPk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="UOQ-7k-uMG" customClass="GradientView" customModule="GS_Technology" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xw1-Ku-dfa" customClass="GradientView" customModule="GS_Technology" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mv-iz-beO">
+                            <rect key="frame" x="20" y="35" width="35" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="7h2-O8-Ng9"/>
+                                <constraint firstAttribute="width" constant="35" id="XZc-NQ-xG2"/>
+                            </constraints>
+                            <state key="normal" image="Back_Arrow"/>
+                            <connections>
+                                <action selector="btnBackAction:" destination="-1" eventType="touchUpInside" id="W3j-fr-L7x"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Attandance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uh-VQ-60G">
+                            <rect key="frame" x="112.5" y="40" width="189.5" height="30"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="1uh-VQ-60G" firstAttribute="centerX" secondItem="xw1-Ku-dfa" secondAttribute="centerX" id="7pc-M5-VJn"/>
+                        <constraint firstAttribute="bottom" secondItem="0mv-iz-beO" secondAttribute="bottom" constant="10" id="Aj0-kc-bR3"/>
+                        <constraint firstAttribute="bottom" secondItem="1uh-VQ-60G" secondAttribute="bottom" constant="10" id="dgK-Sa-Qac"/>
+                        <constraint firstAttribute="height" constant="80" id="hhv-k4-7j6"/>
+                        <constraint firstItem="0mv-iz-beO" firstAttribute="leading" secondItem="xw1-Ku-dfa" secondAttribute="leading" constant="20" id="zh6-lJ-c6y"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="topGradientColor">
+                            <color key="value" red="0.0039215686269999999" green="0.92941176469999998" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="bottomGradientColor">
+                            <color key="value" red="0.1647058824" green="0.58823529409999997" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4z-IM-6yI">
+                    <rect key="frame" x="0.0" y="80" width="414" height="782"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="GhI-gh-IiM" firstAttribute="trailing" secondItem="xw1-Ku-dfa" secondAttribute="trailing" id="1Py-OW-U6J"/>
+                <constraint firstItem="xw1-Ku-dfa" firstAttribute="leading" secondItem="UOQ-7k-uMG" secondAttribute="leading" id="Ubj-oI-cdg"/>
+                <constraint firstItem="T4z-IM-6yI" firstAttribute="top" secondItem="xw1-Ku-dfa" secondAttribute="bottom" id="VeU-KT-8v9"/>
+                <constraint firstItem="GhI-gh-IiM" firstAttribute="bottom" secondItem="T4z-IM-6yI" secondAttribute="bottom" id="XLm-kM-Ook"/>
+                <constraint firstItem="GhI-gh-IiM" firstAttribute="trailing" secondItem="T4z-IM-6yI" secondAttribute="trailing" id="buT-W0-WOZ"/>
+                <constraint firstItem="xw1-Ku-dfa" firstAttribute="top" secondItem="UOQ-7k-uMG" secondAttribute="top" id="kzO-OY-LKh"/>
+                <constraint firstItem="T4z-IM-6yI" firstAttribute="leading" secondItem="GhI-gh-IiM" secondAttribute="leading" id="sUs-k6-zHg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="GhI-gh-IiM"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="topGradientColor">
+                    <color key="value" red="0.1647058824" green="0.58823529409999997" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="bottomGradientColor">
+                    <color key="value" red="0.0039215686269999999" green="0.92941176469999998" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-17" y="-18"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Back_Arrow" width="24" height="24"/>
+    </resources>
+</document>

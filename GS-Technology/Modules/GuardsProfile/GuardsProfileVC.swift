@@ -91,7 +91,6 @@ extension GuardsProfileVC : UITableViewDelegate, UITableViewDataSource
         let cell : GuardsProfileTVC = tableVew.dequeueReusableCell(withIdentifier: "GuardsProfileTVC", for: indexPath) as! GuardsProfileTVC
         cell.lblName.text = GuardNames[indexPath.row]
         self.shadowEffect(cell.cellvew)
-       // tableVew.reloadData()
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

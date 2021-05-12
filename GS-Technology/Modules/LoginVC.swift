@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 
-class LoginVC: UIViewController,UITextFieldDelegate {
+class LoginVC: UIViewController {
 
     @IBOutlet weak var mainVew: UIView!
     @IBOutlet weak var txtEmailMobile: HoshiTextField!
@@ -23,9 +23,9 @@ class LoginVC: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        txtEmailMobile.delegate = self
         txtPassword.delegate = self
-        txtPassword.returnKeyType = .done
+       // txtPassword.returnKeyType = .done
         shadowEffect(mainVew)
     }
     func shadowEffect(_ vew : UIView){
@@ -36,13 +36,6 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         vew.layer.cornerRadius = 10
     }
     
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == txtPassword{
-            self.view.endEditing(true)
-        }
-        return true
-    }
     
     
     
@@ -89,6 +82,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     }
     
     
+    
     func login(){
         Auth.auth().signIn(withEmail: EmailMobile, password: password) { (Result, err) in
             if err != nil{
@@ -120,4 +114,17 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         }
         
 }
+
+extension LoginVC : UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        view.endEditing(true)
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txtPassword{
+            self.view.endEditing(true)
+        }
+        return true
+    }
+    
+}

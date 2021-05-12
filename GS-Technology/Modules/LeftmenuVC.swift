@@ -20,7 +20,7 @@ class LeftmenuVC: UIViewController {
     
     
     @IBAction func btnHomeAction(_ sender: Any) {
-        dismissMenu()
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -28,7 +28,8 @@ class LeftmenuVC: UIViewController {
         let vc : GuardsProfileVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsProfileVC") as! GuardsProfileVC
               vc.type = "leftMenu"
               vc.modalPresentationStyle = .overFullScreen
-              self.presentDetails(vc)
+        self.navigationController?.pushViewController(vc, animated: true)
+           //   self.presentDetails(vc)
     }
     
     
@@ -36,7 +37,8 @@ class LeftmenuVC: UIViewController {
          let vc : GuardsAttendanceVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsAttendanceVC") as! GuardsAttendanceVC
               vc.type = "leftMenu"
               vc.modalPresentationStyle = .overFullScreen
-              self.presentDetails(vc)
+             // self.presentDetails(vc)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -44,7 +46,8 @@ class LeftmenuVC: UIViewController {
          let vc : GuardsExpensesVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsExpensesVC") as! GuardsExpensesVC
               vc.type = "leftMenu"
               vc.modalPresentationStyle = .overFullScreen
-              self.presentDetails(vc)
+        self.navigationController?.pushViewController(vc, animated: true)
+             // self.presentDetails(vc)
     }
     
     
@@ -52,7 +55,8 @@ class LeftmenuVC: UIViewController {
         let vc : GuardsSalaryVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsSalaryVC") as! GuardsSalaryVC
               vc.type = "leftMenu"
               vc.modalPresentationStyle = .overFullScreen
-              self.presentDetails(vc)
+              //self.presentDetails(vc)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -74,6 +78,7 @@ class LeftmenuVC: UIViewController {
     
     @IBAction func btnDismissAction(_ sender: Any) {
         dismissMenu()
+       // self.navigationController?.popToRootViewController(animated: true)
     }
     
     

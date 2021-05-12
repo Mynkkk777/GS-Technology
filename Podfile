@@ -11,6 +11,7 @@ target 'GS-Technology' do
  pod 'Firebase/Firestore'
  pod 'FirebaseFirestoreSwift'
  pod 'Firebase/Auth'
+ pod 'SideMenu'
   
 
   target 'GS-TechnologyTests' do

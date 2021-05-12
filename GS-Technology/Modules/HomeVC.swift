@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SideMenu
 
 class HomeVC: UIViewController {
     
@@ -19,12 +20,22 @@ class HomeVC: UIViewController {
     @IBOutlet weak var imgAttendance: UIImageView!
     @IBOutlet weak var imgGeneralExpenses: UIImageView!
     @IBOutlet weak var imgSalary: UIImageView!
+    var menu : SideMenuNavigationController?
     var image : UIImage!
     var GuardName : [String] = []
+    var LeftMenuVCForNavigation : LeftmenuVC?
 
     override func viewDidLoad() {
         super.viewDidLoad()
     //    guardData()
+        LeftMenuVCForNavigation = StoryBoards.Main.getStoryBoard().instantiateViewController(identifier: "LeftmenuVC") as! LeftmenuVC
+        menu = SideMenuNavigationController.init(rootViewController: LeftMenuVCForNavigation ?? UIViewController())
+        menu?.navigationBar.isHidden = true
+        menu?.menuWidth = UIScreen.main.bounds.width * 0.75
+        menu?.hidesBarsOnTap = true
+        menu?.leftSide = true
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
         shadowEffect(vewOne)
         shadowEffect(vewTwo)
         shadowEffect(vewThree)
@@ -76,10 +87,11 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func btnLeftMenuAction(_ sender: Any) {
-        let vc : LeftmenuVC = StoryBoards.Main.getStoryBoard().instantiateViewController(identifier: "LeftmenuVC") as! LeftmenuVC
-
-        vc.modalPresentationStyle = .overFullScreen
-        self.presentMenu(vc)
+//        let vc : LeftmenuVC = StoryBoards.Main.getStoryBoard().instantiateViewController(identifier: "LeftmenuVC") as! LeftmenuVC
+//
+//        vc.modalPresentationStyle = .overFullScreen
+//        self.presentMenu(vc)
+        present(menu!, animated: true, completion: nil)
     }
     
 

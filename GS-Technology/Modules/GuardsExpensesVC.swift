@@ -19,11 +19,11 @@ class GuardsExpensesVC: UIViewController {
     
 
     @IBAction func btnBackAction(_ sender: Any) {
-        if type == "leftMenu"{
-            dismissMenuLeft()
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+//        if type == "leftMenu"{
+//            dismissMenuLeft()
+//        } else {
+        self.navigationController?.popToRootViewController(animated: true)
+     //   }
     }
     /*
     // MARK: - Navigation

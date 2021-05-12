@@ -14,6 +14,7 @@ class GuardsProfileVC: UIViewController {
     
     
     var GuardNames : [String] = []
+    var filteredGuardName : [String] = []
     var type = ""
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableVew: UITableView!
@@ -25,13 +26,15 @@ class GuardsProfileVC: UIViewController {
         tableVew.delegate = self
         tableVew.dataSource = self
         searchBar.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         viewGuards()
-        tableVew.reloadData()
+       // tableVew.reloadData()
+       // animateTableView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateTableView()
+    }
     func shadowEffect(_ vew : UIView){
            vew.layer.shadowColor = UIColor.gray.cgColor
            vew.layer.shadowOpacity = 1
@@ -43,11 +46,8 @@ class GuardsProfileVC: UIViewController {
     
     
     @IBAction func btnBackAction(_ sender: Any) {
-        if type == "leftMenu"{
-            dismissMenuLeft()
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+         //   self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func viewGuards(){
@@ -57,7 +57,6 @@ class GuardsProfileVC: UIViewController {
                 return
             } else{
                 guard let values = document?.documents else {return}
-                   // self.Name = values.compactMap{$0.documentID }
                 let nameGuard = values.compactMap{$0.documentID}
                 self.GuardNames = nameGuard
                 self.tableVew.reloadData()
@@ -74,6 +73,23 @@ class GuardsProfileVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func animateTableView(){
+        tableVew.reloadData()
+        let cells = tableVew.visibleCells
+        let tableHeight = tableVew.bounds.size.height
+        for cell in cells{
+            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
+        }
+        var delayCounter = 0
+        for cell in cells{
+            
+            UIView.animate(withDuration: 1.75, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            delayCounter += 1
+        }
+    }
+    
     
 }
 
@@ -84,19 +100,33 @@ extension GuardsProfileVC : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GuardNames.count
+        if searchBar.text == "" {
+            return GuardNames.count
+        } else {
+            return filteredGuardName.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : GuardsProfileTVC = tableVew.dequeueReusableCell(withIdentifier: "GuardsProfileTVC", for: indexPath) as! GuardsProfileTVC
-        cell.lblName.text = GuardNames[indexPath.row]
+        if searchBar.text == "" {
+            cell.lblName.text = GuardNames[indexPath.row]
+            self.searchBar.endEditing(true)
+        } else {
+            cell.lblName.text = filteredGuardName[indexPath.row]
+           // return filteredGuardName.count
+        }
+        
+        cell.cellvew.isUserInteractionEnabled = false
         self.shadowEffect(cell.cellvew)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 100
+        return 120
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.searchBar.endEditing(true)
         let vc = GuardsViewVC()
         vc.NameSelected = GuardNames[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
@@ -112,25 +142,59 @@ extension GuardsProfileVC : UISearchBarDelegate{
     }
     
     @objc func searchContent(){
-        if searchBar.text == ""{
-            self.lbl?.text = "Looks like there are no search results"
-            self.tableVew.reloadData()
-        }else{
+        self.filteredGuardName = []
+        if searchBar.text?.count ?? 0 > 2{
             loadingView(flag: true)
 //            Firestore.firestore().collection("Users").document(UserManager.shared.userId).collection("Guards").getDocuments { (document, err) in
 //                if err != nil {
 //                    return
 //                } else{
-//                    guard let values = document?.documents else {return}
-//                       // self.Name = values.compactMap{$0.documentID }
-//                    let nameGuard = values.compactMap{$0.documentID}
-//                    self.GuardNames = nameGuard
-//                    self.tableVew.reloadData()
-//                    self.loadingView(flag: false)
+//                    DispatchQueue.main.async {
+//                        guard let values = document?.documents else {return}
+//                           // self.Name = values.compactMap{$0.documentID }
+//                        let nameGuard = values.compactMap{$0.documentID}
+//                       // self.GuardNames = nameGuard
+//                        self.filteredGuardName = []
+//                        for i in nameGuard {
+//                            if i.contains(self.searchBar.text ?? "") {
+//                                if !self.filteredGuardName.contains(i){
+//                                    self.filteredGuardName.append(i)
+//                                }
+//
+//                            }
+//                        }
+//                        if self.filteredGuardName.count == 0{
+//                            self.lbl?.text = "Looks like there are no search results"
+//                        }
+//
+//                        self.tableVew.reloadData()
+//                        self.loadingView(flag: false)
+//                    }
+//
 //                }
 //
 //            }
-//            Firestore.firestore().collection("Users").document(UserManager.shared.userId).collection("Guards").g
+            
+            for i in GuardNames {
+                                       if i.contains(self.searchBar.text ?? "") {
+                                           if !self.filteredGuardName.contains(i){
+                                               self.filteredGuardName.append(i)
+                                           }
+           
+                                       }
+                                   }
+                                   if self.filteredGuardName.count == 0{
+                                       self.lbl?.text = "Looks like there are no search results"
+                                   }
+           
+                                   self.tableVew.reloadData()
+                                   self.loadingView(flag: false)
+            
+            
+        }
+        else
+        {
+            self.tableVew.reloadData()
         }
     }
     

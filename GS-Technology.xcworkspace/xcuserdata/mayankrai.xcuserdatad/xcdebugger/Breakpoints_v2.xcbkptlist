@@ -30,9 +30,11 @@
             symbolName = "*0x1048f72a8">
             <Locations>
                <Location
+                  uuid = "D012E69E-84C5-4537-87CB-D7360D0D82D0 - d6e39dba9e17c722"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
+                  moduleName = "SideMenu"
                   usesParentBreakpointCondition = "Yes"
                   offsetFromSymbolStart = "0">
                </Location>

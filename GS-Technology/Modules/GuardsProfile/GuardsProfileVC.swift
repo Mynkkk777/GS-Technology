@@ -194,7 +194,7 @@ extension GuardsProfileVC : UISearchBarDelegate{
             
             
         }
-        else
+        else if searchBar.text == ""
         {
             self.tableVew.reloadData()
         }

@@ -27,7 +27,6 @@ class HomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    //    guardData()
         LeftMenuVCForNavigation = StoryBoards.Main.getStoryBoard().instantiateViewController(identifier: "LeftmenuVC") as! LeftmenuVC
         menu = SideMenuNavigationController.init(rootViewController: LeftMenuVCForNavigation ?? UIViewController())
         menu?.navigationBar.isHidden = true

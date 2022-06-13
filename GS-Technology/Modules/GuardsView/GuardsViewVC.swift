@@ -25,7 +25,7 @@ class GuardsViewVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var btnFemale: UIButton!
     @IBOutlet weak var btnEdit: GradientButton!
     @IBOutlet weak var btnDelete: GradientButton!
-    
+    var textFieldArray : [UITextField] = []
     var NameSelected = ""
     var GuardData : [String:Any] = [:]
     var AccountNumber : Int = 0
@@ -48,6 +48,7 @@ class GuardsViewVC: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textFieldArray = [self.txtName,self.txtAddress,self.txtDOB,self.txtContactNumber,self.txtAadharNumber,self.txtBankName,self.txtBankAccountNumber,self.txtBankIFSC,self.txtBankIFSC,self.txtPosition,self.txtSalaryPerDay]
         showDetails()
         editable(false)
         delegate(txtName)
@@ -65,41 +66,13 @@ class GuardsViewVC: UIViewController,UITextFieldDelegate {
    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == txtName{
-            self.view.endEditing(true)
-        }
-        if textField == txtAddress{
-            self.view.endEditing(true)
-        }
-        if textField == txtDOB{
-            self.view.endEditing(true)
-        }
-        if textField == txtContactNumber{
-            self.view.endEditing(true)
-        }
-        if textField == txtAadharNumber{
-            self.view.endEditing(true)
-        }
-        if textField == txtBankName{
-            self.view.endEditing(true)
-        }
-        if textField == txtBankAccountNumber{
-            self.view.endEditing(true)
-        }
-        if textField == txtBankIFSC{
-            self.view.endEditing(true)
-        }
-        if textField == txtPosition{
-            self.view.endEditing(true)
-        }
-        if textField == txtSalaryPerDay{
-            self.view.endEditing(true)
+        for txtfield in textFieldArray {
+            if txtfield == textField{
+                self.view.endEditing(true)
+            }
         }
         return true
     }
-    
-    
-    
     
     
     func delegate(_ textField: UITextField){
@@ -118,7 +91,6 @@ class GuardsViewVC: UIViewController,UITextFieldDelegate {
         txtBankIFSC.isUserInteractionEnabled = action
         txtPosition.isUserInteractionEnabled = action
         txtSalaryPerDay.isUserInteractionEnabled = action
-       
     }
     
     func showDetails(){
@@ -128,10 +100,11 @@ class GuardsViewVC: UIViewController,UITextFieldDelegate {
                 self.view.makeToast(err?.localizedDescription)
             }  else {
                 let doc = data!.data()
-                self.GuardData = doc!
-                self.addDetails(self.GuardData)
-                self.loadingView(flag: false)
-                
+                if let guardData = doc {
+                    self.GuardData = guardData
+                    self.addDetails(self.GuardData)
+                    self.loadingView(flag: false)
+                }
             }
         }
     }
@@ -163,9 +136,6 @@ class GuardsViewVC: UIViewController,UITextFieldDelegate {
             btnMale.setImage(UIImage(named: "RadioButton_unchecked.png"), for: .normal)
             btnFemale.setImage(UIImage(named:"RadioButton_checked.png"), for: .normal)
         }
-        
-        
-        
     }
     
 

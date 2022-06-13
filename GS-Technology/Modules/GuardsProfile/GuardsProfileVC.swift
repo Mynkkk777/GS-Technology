@@ -27,13 +27,15 @@ class GuardsProfileVC: UIViewController {
         tableVew.dataSource = self
         searchBar.delegate = self
         viewGuards()
-       // tableVew.reloadData()
-       // animateTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewGuards()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animateTableView()
+       // animateTableView()
     }
     func shadowEffect(_ vew : UIView){
            vew.layer.shadowColor = UIColor.gray.cgColor
@@ -143,7 +145,7 @@ extension GuardsProfileVC : UISearchBarDelegate{
     
     @objc func searchContent(){
         self.filteredGuardName = []
-        if searchBar.text?.count ?? 0 > 2{
+        if searchBar.text?.count ?? 0 > 1{
             loadingView(flag: true)
 //            Firestore.firestore().collection("Users").document(UserManager.shared.userId).collection("Guards").getDocuments { (document, err) in
 //                if err != nil {

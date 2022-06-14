@@ -24,7 +24,7 @@ class GuardsAddVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var btnMale: UIButton!
     @IBOutlet weak var btnFemale: UIButton!
     @IBOutlet weak var btnDropDown: UIButton!
-    
+    var textFieldArray : [UITextField] = []
     var datePicker = UIDatePicker()
     var position = ["Guard","Head Guard","Bouncer","Manager"]
     var selectedGender = "Male"
@@ -42,69 +42,29 @@ class GuardsAddVC: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textFieldArray = [self.txtName,self.txtAddress,self.txtDOB,self.txtContactNumber,self.txtAadhharNumber,self.txtBankName,self.txtBankAccountNumber,self.txtBankIFSC,self.txtBankIFSC,self.txtPosition,self.txtSalaryPerDay]
         showDatePicker()
         setDropdown(txtPosition)
-        delegate(txtName)
-        delegate(txtAddress)
-        delegate(txtDOB)
-        delegate(txtContactNumber)
-        delegate(txtAadhharNumber)
-        delegate(txtBankName)
-        delegate(txtBankAccountNumber)
-        delegate(txtBankIFSC)
-        delegate(txtPosition)
-        delegate(txtSalaryPerDay)
-        
-        
+        delegate(textFieldArray)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == txtName{
-            self.view.endEditing(true)
-        }
-        if textField == txtAddress{
-            self.view.endEditing(true)
-        }
-        if textField == txtDOB{
-            self.view.endEditing(true)
-        }
-        if textField == txtContactNumber{
-            self.view.endEditing(true)
-        }
-        if textField == txtAadhharNumber{
-            self.view.endEditing(true)
-        }
-        if textField == txtBankName{
-            self.view.endEditing(true)
-        }
-        if textField == txtBankAccountNumber{
-            self.view.endEditing(true)
-        }
-        if textField == txtBankIFSC{
-            self.view.endEditing(true)
-        }
-        if textField == txtPosition{
-            self.view.endEditing(true)
-        }
-        if textField == txtSalaryPerDay{
-            self.view.endEditing(true)
+        for txtfield in textFieldArray {
+            if txtfield == textField{
+                self.view.endEditing(true)
+            }
         }
         return true
     }
     
     
-    
-    
-    
-    func delegate(_ textField: UITextField){
-        textField.delegate = self
-        textField.returnKeyType = .done
+    func delegate(_ textField: [UITextField]){
+        for txtfield in textField {
+            txtfield.delegate = self
+            txtfield.returnKeyType = .done
+        }
     }
     
-    
-    func setUpTheme(){
-        
-    }
     
     @IBAction func btnGenderAction(_ sender: UIButton) {
         if sender == btnMale {
@@ -215,10 +175,7 @@ class GuardsAddVC: UIViewController,UITextFieldDelegate {
                 self.view.makeToast("Data Added Successfully")
             }
         }
-        
     }
-    
-    
     
     func showDatePicker(){
         //Formate Date
@@ -230,7 +187,6 @@ class GuardsAddVC: UIViewController,UITextFieldDelegate {
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donedatePicker));
         let attributes = [NSAttributedString.Key.font:  UIFont(name: "Helvetica-Bold", size: 14.0)!, NSAttributedString.Key.foregroundColor: UIColor.black]
         doneButton.setTitleTextAttributes(attributes, for: .normal)
-        //BarButtonItemAppearance.setTitleTextAttributes(attributes, for: .highlighted)
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
         cancelButton.setTitleTextAttributes(attributes, for: .normal)

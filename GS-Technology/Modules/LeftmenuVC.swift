@@ -34,38 +34,36 @@ class LeftmenuVC: UIViewController {
     
     
     @IBAction func btnAttendanceAction(_ sender: Any) {
-         let vc : GuardsAttendanceVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsAttendanceVC") as! GuardsAttendanceVC
-              vc.type = "leftMenu"
-              vc.modalPresentationStyle = .overFullScreen
-             // self.presentDetails(vc)
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.view.makeToast("Coming soon")
+//         let vc : GuardsAttendanceVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsAttendanceVC") as! GuardsAttendanceVC
+//              vc.type = "leftMenu"
+//              vc.modalPresentationStyle = .overFullScreen
+//             // self.presentDetails(vc)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
     @IBAction func btnExpenseAction(_ sender: Any) {
-         let vc : GuardsExpensesVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsExpensesVC") as! GuardsExpensesVC
-              vc.type = "leftMenu"
-              vc.modalPresentationStyle = .overFullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.view.makeToast("Coming soon")
+//         let vc : GuardsExpensesVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsExpensesVC") as! GuardsExpensesVC
+//              vc.type = "leftMenu"
+//              vc.modalPresentationStyle = .overFullScreen
+//        self.navigationController?.pushViewController(vc, animated: true)
              // self.presentDetails(vc)
     }
     
     
     @IBAction func btnSalaryAction(_ sender: Any) {
-        let vc : GuardsSalaryVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsSalaryVC") as! GuardsSalaryVC
-              vc.type = "leftMenu"
-              vc.modalPresentationStyle = .overFullScreen
-              //self.presentDetails(vc)
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.view.makeToast("Coming soon")
+//        let vc : GuardsSalaryVC = StoryBoards.Main.getStoryBoard().instantiateViewController(withIdentifier: "GuardsSalaryVC") as! GuardsSalaryVC
+//              vc.type = "leftMenu"
+//              vc.modalPresentationStyle = .overFullScreen
+//              //self.presentDetails(vc)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
     @IBAction func btnLogoutAction(_ sender: Any) {
-//        Auth.auth().signOut().t( signOut(){
-//            self.view.makeToast("Logged Out Successfully")
-//        }).catch {
-//          print("Error")
-//        };
         do {
             try Auth.auth().signOut()
             signOut()

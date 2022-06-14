@@ -57,7 +57,6 @@ class HomeVC: UIViewController {
                 return
             } else{
                 guard let values = document?.documents else {return}
-                   // self.Name = values.compactMap{$0.documentID }
                 let nameGuard = values.compactMap{$0.documentID}
                 self.GuardName = nameGuard
             }

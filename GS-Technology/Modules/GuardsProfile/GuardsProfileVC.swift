@@ -48,7 +48,6 @@ class GuardsProfileVC: UIViewController {
     
     
     @IBAction func btnBackAction(_ sender: Any) {
-         //   self.navigationController?.popViewController(animated: true)
         self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -145,37 +144,8 @@ extension GuardsProfileVC : UISearchBarDelegate{
     
     @objc func searchContent(){
         self.filteredGuardName = []
-        if searchBar.text?.count ?? 0 > 1{
+        if searchBar.text?.count ?? 0 > 2{
             loadingView(flag: true)
-//            Firestore.firestore().collection("Users").document(UserManager.shared.userId).collection("Guards").getDocuments { (document, err) in
-//                if err != nil {
-//                    return
-//                } else{
-//                    DispatchQueue.main.async {
-//                        guard let values = document?.documents else {return}
-//                           // self.Name = values.compactMap{$0.documentID }
-//                        let nameGuard = values.compactMap{$0.documentID}
-//                       // self.GuardNames = nameGuard
-//                        self.filteredGuardName = []
-//                        for i in nameGuard {
-//                            if i.contains(self.searchBar.text ?? "") {
-//                                if !self.filteredGuardName.contains(i){
-//                                    self.filteredGuardName.append(i)
-//                                }
-//
-//                            }
-//                        }
-//                        if self.filteredGuardName.count == 0{
-//                            self.lbl?.text = "Looks like there are no search results"
-//                        }
-//
-//                        self.tableVew.reloadData()
-//                        self.loadingView(flag: false)
-//                    }
-//
-//                }
-//
-//            }
             
             for i in GuardNames {
                                        if i.contains(self.searchBar.text ?? "") {
